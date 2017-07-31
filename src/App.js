@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
+import './styles.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      personList: [],
-      visiblePersonList: []
+      people: [],
+      myPeeps: []
     };
   }
 
   componentDidMount() {
-    getPersonList().then((personList) =>
+    getPeople().then((people) =>
         this.setState({
-            personList,
-            visiblePersonList: personList
+            people
         }));
   }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-        </div>
-        <p className="App-intro">
-        </p>
+      <div>
+          <button> Play </button>
+          <button> Mat* </button>
+          <button> Reverse </button>
+          <button> Hint </button>
+          <button> Begins </button>
+          <input type="text" id="myText"></input>
+
       </div>
     );
   }
 }
 
-function getPersonList() {
+function getPeople() {
     return new Promise((resolve, reject) => {
         fetch('https://willowtreeapps.com/api/v1.0/profiles/').then(function(response) {
             if (response.status !== 200) {
